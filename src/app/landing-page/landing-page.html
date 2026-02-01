@@ -1,6 +1,13 @@
 <main class="slides">
 	<section class="slide">
-		<video #videoRef [src]="videoSrc" muted playsinline loop></video>
+		<video
+			[src]="videoSrc"
+			muted
+			autoplay
+			playsinline
+			oncanplay="this.play()"
+			onloadedmetadata="this.muted = true"
+		></video>
 
 		<p class="hint" aria-hidden="true">
 			Scroll Down to See More

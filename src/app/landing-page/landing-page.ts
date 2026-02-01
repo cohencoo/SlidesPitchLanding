@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
 	selector: 'app-landing-page',
@@ -6,9 +6,7 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 	templateUrl: './landing-page.html',
 	styleUrl: './landing-page.scss',
 })
-export class LandingPage implements AfterViewInit {
-	@ViewChild('videoRef') videoRef!: ElementRef<HTMLVideoElement>;
-
+export class LandingPage {
 	public videoSrc = 'productvideo.mp4';
 
 	showcase = [
@@ -33,18 +31,4 @@ export class LandingPage implements AfterViewInit {
 	];
 
 	showing = this.showcase[0];
-
-	ngAfterViewInit(): void {
-		const video = this.videoRef.nativeElement;
-
-		video.addEventListener('canplay', () => {
-			video
-				.play()
-				.then(() => console.log('Video autoplayed successfully!'))
-				.catch((err) => console.error('Autoplay failed:', err));
-		});
-
-		// Force the video to load (in case 'canplay' doesn't trigger immediately)
-		video.load();
-	}
 }
