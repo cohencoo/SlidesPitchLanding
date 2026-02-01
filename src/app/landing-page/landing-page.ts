@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 
 @Component({
 	selector: 'app-landing-page',
@@ -7,6 +7,8 @@ import { Component } from '@angular/core';
 	styleUrl: './landing-page.scss',
 })
 export class LandingPage {
+	@ViewChild('heroVideo', { static: true }) heroVideo!: ElementRef<HTMLVideoElement>;
+
 	showcase = [
 		{
 			title: 'Real-time generation',
@@ -29,4 +31,10 @@ export class LandingPage {
 	];
 
 	showing = this.showcase[0];
+
+	ngAfterViewInit() {
+		const v = this.heroVideo.nativeElement;
+		v.autoplay = true;
+		v.play();
+	}
 }
