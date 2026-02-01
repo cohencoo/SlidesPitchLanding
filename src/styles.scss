@@ -48,6 +48,10 @@ body {
 	&.absolute {
 		position: absolute;
 		bottom: 25%;
+
+		@media screen and (max-width: 768px) {
+			bottom: 5rem;
+		}
 	}
 }
 

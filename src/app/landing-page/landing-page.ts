@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 
 @Component({
 	selector: 'app-landing-page',
@@ -8,6 +8,8 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class LandingPage {
 	@ViewChild('heroVideo', { static: true }) heroVideo!: ElementRef<HTMLVideoElement>;
+
+	constructor(private zone: NgZone) {}
 
 	showcase = [
 		{
@@ -34,7 +36,39 @@ export class LandingPage {
 
 	ngAfterViewInit() {
 		const v = this.heroVideo.nativeElement;
+
+		v.muted = true;
+		v.playsInline = true;
 		v.autoplay = true;
-		v.play();
+
+		this.zone.runOutsideAngular(() => {
+			// Let the browser attempt autoplay naturally first.
+			// Only attempt manual play after the element is "ready enough".
+			const attempt = async () => {
+				try {
+					if (v.readyState < 2) {
+						await new Promise<void>((res) =>
+							v.addEventListener('canplay', () => res(), { once: true }),
+						);
+					}
+					await v.play();
+				} catch {
+					// blocked: arm first interaction to start it immediately
+					const arm = async () => {
+						try {
+							await v.play();
+						} catch {}
+						window.removeEventListener('pointerdown', arm, true);
+						window.removeEventListener('touchstart', arm, true);
+						window.removeEventListener('keydown', arm, true);
+					};
+					window.addEventListener('pointerdown', arm, true);
+					window.addEventListener('touchstart', arm, true);
+					window.addEventListener('keydown', arm, true);
+				}
+			};
+
+			requestAnimationFrame(() => void attempt());
+		});
 	}
 }
