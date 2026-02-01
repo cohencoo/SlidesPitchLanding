@@ -1,13 +1,6 @@
 <main class="slides">
 	<section class="slide">
-		<video
-			[src]="videoSrc"
-			muted
-			autoplay
-			playsinline
-			oncanplay="this.play()"
-			onloadedmetadata="this.muted = true"
-		></video>
+		<video [src]="videoSrc" [autoplay]="true" [muted]="true" [playsInline]="true"></video>
 
 		<p class="hint" aria-hidden="true">
 			Scroll Down to See More
@@ -83,9 +76,15 @@
 			</div>
 			<div class="preview">
 				@if (showing.image) {
-					<img src="{{ showing.image }}" alt="{{ showing.title }} screenshot" />
+					<img [src]="showing.image" alt="Preview of {{ showing.title }} presentation" />
 				} @else if (showing.video) {
-					<video src="{{ showing.video }}" playsinline autoplay muted loop></video>
+					<video
+						[src]="showing.video"
+						[autoplay]="true"
+						[muted]="true"
+						[loop]="true"
+						[playsInline]="true"
+					></video>
 				}
 			</div>
 		</div>
