@@ -1,13 +1,8 @@
 <main class="slides">
-	<section aria-hidden="true" class="slide">
-		<video
-			playsinline
-			autoplay
-			muted
-			preload="metadata"
-			fetchpriority="high"
-			src="productvideo.mp4"
-		></video>
+	<section class="slide">
+		<video playsinline webkit-playsinline preload="metadata" autoplay muted>
+			<source src="productvideo.mp4" type="video/mp4" />
+		</video>
 
 		<p class="hint" aria-hidden="true">
 			Scroll Down to See More
@@ -85,7 +80,7 @@
 				@if (showing.image) {
 					<img src="{{ showing.image }}" alt="{{ showing.title }} screenshot" />
 				} @else if (showing.video) {
-					<video src="{{ showing.video }}" autoplay muted loop></video>
+					<video src="{{ showing.video }}" playsinline autoplay muted loop></video>
 				}
 			</div>
 		</div>
