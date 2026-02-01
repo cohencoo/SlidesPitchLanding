@@ -1,13 +1,20 @@
 .particles {
+	z-index: -1;
+
 	img {
 		position: absolute;
 		width: 90px;
 		height: auto;
 		object-fit: contain;
 
-		@media screen and (max-width: 600px) {
+		@media screen and (max-width: 968px) {
 			& {
-				width: 50px;
+				width: 40px;
+			}
+
+			&:nth-child(4),
+			&:nth-child(5) {
+				display: none;
 			}
 		}
 	}
@@ -61,7 +68,7 @@
 			max-width: 900px;
 			font-weight: 600;
 
-			@media screen and (max-width: 600px) {
+			@media screen and (max-width: 768px) {
 				font-size: 2.5rem;
 			}
 		}
@@ -88,7 +95,7 @@
 				font-weight: 500;
 				line-height: 1.5;
 
-				@media screen and (max-width: 600px) {
+				@media screen and (max-width: 768px) {
 					font-size: 2rem;
 					line-height: 1.2;
 				}
@@ -99,13 +106,13 @@
 				font-weight: 400;
 				line-height: 1.5;
 
-				@media screen and (max-width: 600px) {
+				@media screen and (max-width: 768px) {
 					font-size: 1.5rem;
 					line-height: 1.2;
 				}
 			}
 
-			@media screen and (max-width: 600px) {
+			@media screen and (max-width: 768px) {
 				& {
 					max-width: 100%;
 				}
@@ -138,7 +145,7 @@
 				font-family: inherit;
 				font-size: 1.25rem;
 
-				@media (max-width: 600px) {
+				@media screen and (max-width: 768px) {
 					& {
 						font-size: 1.1rem;
 						padding: 0.75rem 1rem;
@@ -197,11 +204,11 @@
 				}
 			}
 
-			@media (max-width: 600px) {
+			@media screen and (max-width: 768px) {
 				& {
 					max-width: 100%;
 					grid-template-columns: 1fr;
-					gap: 2rem;
+					gap: 10px;
 				}
 			}
 
@@ -223,6 +230,12 @@
 					height: 100%;
 					border-radius: 1rem;
 					object-fit: cover;
+				}
+
+				@media screen and (max-width: 768px) {
+					& {
+						height: 250px;
+					}
 				}
 			}
 		}
@@ -255,7 +268,7 @@
 				object-fit: cover;
 				z-index: -1;
 
-				@media (max-width: 896px) {
+				@media screen and (max-width: 896px) {
 					object-fit: contain;
 				}
 			}
@@ -270,11 +283,18 @@
 				gap: 10px;
 				align-items: center;
 				flex-direction: column;
+
+				@media screen and (max-width: 768px) {
+					& {
+						font-size: 1.2rem;
+					}
+				}
 			}
 		}
 
-		@media (max-width: 896px) {
+		@media screen and (max-width: 896px) {
 			& {
+				top: unset;
 				aspect-ratio: auto;
 				min-height: 70vh;
 				padding: 2rem;
@@ -282,7 +302,7 @@
 		}
 	}
 
-	@media screen and (max-width: 600px) {
+	@media screen and (max-width: 768px) {
 		& {
 			padding: 1rem;
 			margin: 1rem auto;

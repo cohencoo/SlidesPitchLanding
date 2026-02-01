@@ -1,4 +1,4 @@
-import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 
 @Component({
 	selector: 'app-landing-page',
@@ -6,10 +6,10 @@ import { Component, ElementRef, NgZone, ViewChild } from '@angular/core';
 	templateUrl: './landing-page.html',
 	styleUrl: './landing-page.scss',
 })
-export class LandingPage {
-	@ViewChild('heroVideo', { static: true }) heroVideo!: ElementRef<HTMLVideoElement>;
+export class LandingPage implements AfterViewInit {
+	@ViewChild('videoRef') videoRef!: ElementRef<HTMLVideoElement>;
 
-	constructor(private zone: NgZone) {}
+	public videoSrc = 'productvideo.mp4';
 
 	showcase = [
 		{
@@ -34,41 +34,17 @@ export class LandingPage {
 
 	showing = this.showcase[0];
 
-	ngAfterViewInit() {
-		const v = this.heroVideo.nativeElement;
+	ngAfterViewInit(): void {
+		const video = this.videoRef.nativeElement;
 
-		v.muted = true;
-		v.playsInline = true;
-		v.autoplay = true;
-
-		this.zone.runOutsideAngular(() => {
-			// Let the browser attempt autoplay naturally first.
-			// Only attempt manual play after the element is "ready enough".
-			const attempt = async () => {
-				try {
-					if (v.readyState < 2) {
-						await new Promise<void>((res) =>
-							v.addEventListener('canplay', () => res(), { once: true }),
-						);
-					}
-					await v.play();
-				} catch {
-					// blocked: arm first interaction to start it immediately
-					const arm = async () => {
-						try {
-							await v.play();
-						} catch {}
-						window.removeEventListener('pointerdown', arm, true);
-						window.removeEventListener('touchstart', arm, true);
-						window.removeEventListener('keydown', arm, true);
-					};
-					window.addEventListener('pointerdown', arm, true);
-					window.addEventListener('touchstart', arm, true);
-					window.addEventListener('keydown', arm, true);
-				}
-			};
-
-			requestAnimationFrame(() => void attempt());
+		video.addEventListener('canplay', () => {
+			video
+				.play()
+				.then(() => console.log('Video autoplayed successfully!'))
+				.catch((err) => console.error('Autoplay failed:', err));
 		});
+
+		// Force the video to load (in case 'canplay' doesn't trigger immediately)
+		video.load();
 	}
 }

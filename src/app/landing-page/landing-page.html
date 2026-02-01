@@ -1,13 +1,6 @@
 <main class="slides">
 	<section class="slide">
-		<video
-			#heroVideo
-			src="productvideo.mp4"
-			playsinline
-			autoplay
-			muted
-			preload="metadata"
-		></video>
+		<video #videoRef [src]="videoSrc" muted playsinline loop></video>
 
 		<p class="hint" aria-hidden="true">
 			Scroll Down to See More
