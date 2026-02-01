@@ -1,3 +1,7 @@
-# Welcome to SlidesPitch!
+# SlidesPitch
 
-This space is under construction, stay tuned. Visit [app.slidespitch.com](https://app.slidespitch.com).
+> Turn any question into an instant, narrated presentation.
+
+### Create your first presentation for free
+
+https://app.slidespitch.com

@@ -1,0 +1,125 @@
+<main class="slides">
+	<section aria-hidden="true" class="slide">
+		<video
+			playsinline
+			autoplay
+			muted
+			preload="metadata"
+			fetchpriority="high"
+			src="productvideo.mp4"
+		></video>
+
+		<p class="hint" aria-hidden="true">
+			Scroll Down to See More
+			<!-- prettier-ignore -->
+			<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="7 13 12 18 17 13"></polyline><polyline points="7 6 12 11 17 6"></polyline></svg>
+		</p>
+	</section>
+
+	<section class="slide">
+		<div class="particles">
+			<!-- prettier-ignore -->
+			<img src="cursor.svg" alt="" aria-hidden="true" style="left: 20%; top: 20%" />
+			<!-- prettier-ignore -->
+			<img src="clover.svg" alt="" aria-hidden="true" style="right: 45%; top: 12%" />
+			<!-- prettier-ignore -->
+			<img src="diamond.svg" alt="" aria-hidden="true" style="right: 20%; top: 20%" />
+
+			<!-- prettier-ignore -->
+			<img src="clover.svg" alt="" aria-hidden="true" style="left: 25%; bottom: 15%" />
+			<!-- prettier-ignore -->
+			<img src="cursor.svg" alt="" aria-hidden="true" style="right: 25%; bottom: 15%" />
+		</div>
+		<h1>
+			Turn <span class="brand">any</span> question into an <span class="brand">instant</span>,
+			narrated <span class="brand">presentation</span>.
+		</h1>
+
+		<br />
+
+		<div class="cta absolute">
+			<a href="https://app.slidespitch.com/auth" class="login">Try it free</a>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div class="safe-text">
+			<p class="first center">
+				Google <br />
+				<span class="muted">gives you </span><span class="highlight">Links</span>
+			</p>
+
+			<br /><br />
+
+			<p class="first center">
+				ChatGPT <br />
+				<span class="muted">gives you </span><span class="highlight">Text</span>
+			</p>
+
+			<br /><br />
+
+			<h2 class="first center">
+				<span class="brand">SlidesPitch</span>
+				creates a custom lesson made just for you.
+			</h2>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div class="showcase">
+			<div class="options">
+				@for (item of showcase; track item) {
+					<div
+						class="option"
+						(mouseover)="showing = item"
+						(click)="showing = item"
+						[class.active]="showing === item"
+					>
+						<h3>{{ item.title }}</h3>
+						<p>{{ item.desc1 }}</p>
+						<span>{{ item.desc2 }}</span>
+					</div>
+				}
+			</div>
+			<div class="preview">
+				@if (showing.image) {
+					<img src="{{ showing.image }}" alt="{{ showing.title }} screenshot" />
+				} @else if (showing.video) {
+					<video src="{{ showing.video }}" autoplay muted loop></video>
+				}
+			</div>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div class="safe-text">
+			<h2 class="first center">
+				Ask questions <span class="brand"> mid-presentation </span>
+			</h2>
+
+			<div class="question">
+				<!-- prettier-ignore -->
+				<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24"><g fill="currentColor"><path fill-rule="evenodd" d="M1.818 5.272a.75.75 0 0 1 .91.546l.382 1.528a6.709 6.709 0 0 0 4.975 4.904H16a4.124 4.124 0 0 1 4.096 3.642l.649 5.52a.75.75 0 1 1-1.49.176l-.65-5.52A2.624 2.624 0 0 0 16 13.75H7.918l-.08-.018A8.209 8.209 0 0 1 1.654 7.71l-.382-1.528a.75.75 0 0 1 .545-.91Z" clip-rule="evenodd"></path><path d="M8 13.75V18c0 1.886 0 2.828.586 3.414C9.172 22 10.114 22 12 22c1.886 0 2.828 0 3.414-.586C16 20.828 16 19.886 16 18v-4.25H8Z" opacity=".5"></path><circle cx="12" cy="6" r="4"></circle></g></svg>
+				<input disabled type="text" placeholder="Ask a question..." />
+			</div>
+
+			<p class="second center">
+				<span class="brand">SlidesPitch</span> answers you and keeps going.
+			</p>
+		</div>
+	</section>
+
+	<section class="slide">
+		<div class="safe-text">
+			<h2 class="first center">Ready to stop reading?</h2>
+			<p class="second center">Create your first presentation.</p>
+
+			<br /><br />
+
+			<div class="cta">
+				<a href="https://app.slidespitch.com/auth" class="login">Login</a>
+				<a href="https://app.slidespitch.com/auth" class="signup">Sign Up</a>
+			</div>
+		</div>
+	</section>
+</main>
