@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 	styleUrl: './landing-page.scss',
 })
 export class LandingPage {
+	public posterSrc = 'poster.png';
 	public videoSrc = 'productvideo.mp4';
 
 	showcase = [
